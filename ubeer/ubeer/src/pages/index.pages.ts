@@ -1,0 +1,10 @@
+export { HomePage } from './home/home';
+export { ListPage } from './list/list';
+export { LoginPage } from './login/login';
+export { LocationPage } from './location/location';
+export { DrinksPage } from './drinks/drinks';
+export { OthersPage } from './others/others';
+export { DrinkPage } from './drink/drink';
+export { CartPage } from './cart/cart';
+export { PaymentPage } from './payment/payment';
+export { RegisterPage } from './register/register';

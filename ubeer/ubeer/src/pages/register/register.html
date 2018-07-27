@@ -1,0 +1,86 @@
+<ion-content padding>
+  <!-- <img src="assets/img/logo.png"> -->
+  <ion-list padding-right>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Nombre
+      </ion-label>
+      <ion-input [(ngModel)]="user.firstName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Apellido
+      </ion-label>
+      <ion-input [(ngModel)]="user.lastName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Correo electrónico
+      </ion-label>
+      <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Calle
+      </ion-label>
+      <ion-input [(ngModel)]="user.street" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Número de casa
+      </ion-label>
+      <ion-input [(ngModel)]="user.houseNo" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Ciudad
+      </ion-label>
+      <ion-input [(ngModel)]="user.city" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Estado
+      </ion-label>
+      <ion-input [(ngModel)]="user.state" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Código postal
+      </ion-label>
+      <ion-input [(ngModel)]="user.zipcode" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Teléfono
+      </ion-label>
+      <ion-input [(ngModel)]="user.phone" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Contraseña
+      </ion-label>
+      <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Repetir contraseña
+      </ion-label>
+      <ion-input [(ngModel)]="repeatedPassword" type="password"></ion-input>
+    </ion-item>
+    <div padding>
+      <ion-buttons>
+        <button ion-button block color="primary" icon-right [disabled]="!user.email.includes('@') || !user.email.includes('.') 
+        ||user.email.length<5 || user.firstName.length<2 
+        || user.lastName.length<2 || user.password.length<6" (click)="addUser()" ion-button>
+      Crear cuenta
+      </button>
+      </ion-buttons>
+    </div>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p text-center>¿Ya estás registrado? <a navPop>Inicia Sesión. </a></p>
+  </ion-toolbar>
+</ion-footer>
