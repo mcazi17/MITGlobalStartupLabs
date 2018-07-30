@@ -1,9 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Bebidas</ion-title>
+    <ion-buttons end>
+      <button id="notification-button" ion-button icon-only large>
+        <ion-icon name="cart"  ios="ios-cart" md="md-cart">
+          <ion-badge *ngIf="!isCartEmpty" id="notifications-badge" color="danger">{{cartNo}}</ion-badge>
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -14,9 +18,12 @@
       <ion-thumbnail item-start>
         <img [src]="drink.picture">
       </ion-thumbnail>
-      <h2>{{drink.name}}</h2>
+      <h3>{{drink.name}}</h3>
       <p>$ {{drink.price}}</p>
-      <button ion-button clear item-end>View</button>
+      <button ion-button icon-only clear item-end (click)="addToCart(drink.$key)">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+      <button ion-button clear item-end (click)="drinkClicked(drink.$key) ">View</button>
     </ion-item>
   </ion-list>
 </ion-content>

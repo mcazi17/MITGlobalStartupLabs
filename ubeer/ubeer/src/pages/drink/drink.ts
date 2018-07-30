@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the DrinkPage page.
@@ -15,13 +16,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DrinkPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // this.afDb.object(`drinks/alcohol/${this.categoryKey}`)
-    //   .valueChanges().subscribe(establishment => {
-    //     this.drink = establishment;
-    //     console.log(this.drink.name);
-    //   }
-    // );
+  drinkKey;
+  categoryKey;
+  drinksReference;
+  loading;
+  drink;
+  // constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //   this.afDb.object(`drinks/alcohol/${this.categoryKey}`)
+  //     .valueChanges().subscribe(establishment => {
+  //       this.drink = establishment;
+  //       console.log(this.drink.name);
+  //     }
+  //   );
+  // }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private afDb: AngularFireDatabase, public loadingCtrl: LoadingController) {
+    this.drinkKey = this.navParams.get('key');
+    this.categoryKey = this.navParams.get('category');
+
+    // this.drinksReference = afDb.database.ref('/drinks/alcohol/' + this.categoryKey);
+
+    this.afDb.object(`drinks/alcohol/${this.categoryKey}/${this.drinkKey}`)
+      .valueChanges().subscribe(drink => {
+        this.drink = drink;
+        console.log(this.drink.name);
+      }
+      );
   }
 
   ionViewDidLoad() {

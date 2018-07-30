@@ -5,6 +5,12 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Observable } from "rxjs/Observable";
 import { AngularFireDatabase } from 'angularfire2/database';
 
+//Pages
+import { DrinkPage } from '../drink/drink';
+
+//Providers
+import { DataProvider } from '../../providers/data/data';
+
 @IonicPage()
 @Component({
   selector: 'page-drinks',
@@ -14,11 +20,15 @@ export class DrinksPage {
 
   categoryKey;
   drinks = [];
+  drinkPage = DrinkPage;
   drinksReference;
   loading;
+  cartNo: number = this.dataProvider.getCartNo();
+  isCartEmpty: boolean = this.dataProvider.getIsCartEmpty();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private afDb: AngularFireDatabase, public loadingCtrl: LoadingController) {
+    private afDb: AngularFireDatabase, public loadingCtrl: LoadingController,
+    private dataProvider: DataProvider) {
     this.categoryKey = this.navParams.get('key');
     console.log(this.categoryKey);
 
@@ -57,9 +67,14 @@ export class DrinksPage {
     this.loading.present();
   }
 
-  cardClicked(key: string) {
+  drinkClicked(key: string) {
     console.log(key);
-    // this.navCtrl.push(this.establishmentPP, { key });
+    this.navCtrl.push(this.drinkPage, { key: key, category: this.categoryKey });
+  }
+
+  addToCart(key: string) {
+    this.dataProvider.setIsCartEmpty(false);
+    this.dataProvider.addToCart(1);
   }
 
 }

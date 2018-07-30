@@ -31,7 +31,6 @@ export class ProfilePage {
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDb.object(`profile/${auth.uid}`).valueChanges().subscribe(profile => {
         this.profile = profile;
-        // this.profile.picture = this.viewFile(this.profile.picture);
       });
       console.log(this.profile);
     });
