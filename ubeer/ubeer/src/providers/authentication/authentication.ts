@@ -45,6 +45,10 @@ export class AuthenticationProvider {
     return this.afAuth.auth.signInWithEmailAndPassword(userModel.email, userModel.password);
   }
 
+  signOut(): Promise<any> {
+    return this.afAuth.auth.signOut();
+  }
+
   showToast(text: string) {
     this.toastCtrl.create({
       message: text,

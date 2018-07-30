@@ -16,39 +16,42 @@
 <ion-content padding class="cards-bg">
   <ion-list>
     <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/imgs/logo.png">
-        <!-- <img [src]="files.fullPath"> -->
-      </ion-avatar>
+      <ion-thumbnail item-start>
+        <!-- <img src="assets/imgs/logo.png"> -->
+        <img [src]="profile?.picture">
+      </ion-thumbnail>
       <h2>{{profile?.firstName}} {{profile?.lastName}}</h2>
+      <p>{{profile?.phone}}</p>
     </ion-item>
 
     <ion-item>
-      Titulo
+      Calle
       <ion-note item-end>
-        Nota
+        {{profile?.street}} #{{profile?.houseNo}}
       </ion-note>
     </ion-item>
-  </ion-list>
-  <!-- <ion-list padding-right>
-    <ion-item>
-      <ion-label color="primary" floating>
-        Nombre
-      </ion-label>
-      <ion-input [(ngModel)]="user.firstName" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        Apellido
-      </ion-label>
-      <ion-input [(ngModel)]="user.lastName" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        Correo electrónico
-      </ion-label>
-      <ion-input [(ngModel)]="user.email" type="email"></ion-input>
-    </ion-item>
-  </ion-list> -->
 
+    <ion-item>
+      Código postal
+      <ion-note item-end>
+        {{profile?.zipcode}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Ciudad
+      <ion-note item-end>
+        {{profile?.city}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Estado
+      <ion-note item-end>
+        {{profile?.state}}
+      </ion-note>
+    </ion-item>
+
+    <button ion-button block color="danger" (click)="logout()">Cerrar sesión</button>
+  </ion-list>
 </ion-content>

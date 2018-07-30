@@ -8,14 +8,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let drink of drinks">
       <ion-thumbnail item-start>
-        <img src="../assets/imgs/logo.png">
+        <img [src]="drink.picture">
       </ion-thumbnail>
-      <h2>My Neighbor Totoro</h2>
-      <p>Hayao Miyazaki • 1988</p>
+      <h2>{{drink.name}}</h2>
+      <p>$ {{drink.price}}</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>

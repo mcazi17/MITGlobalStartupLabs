@@ -9,4 +9,5 @@ export interface ProfileModel {
     state: string;
     zipcode: string;
     phone: string;
+    picture: string;
 }

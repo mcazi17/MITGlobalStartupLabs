@@ -4,44 +4,38 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 //Firebase
 import { Observable } from "rxjs/Observable";
 import { AngularFireDatabase } from 'angularfire2/database';
+import { DrinksPage } from '../index.pages';
 
 @IonicPage()
 @Component({
-  selector: 'page-drinks',
-  templateUrl: 'drinks.html',
+  selector: 'page-drinks-categories',
+  templateUrl: 'drinks-categories.html',
 })
-export class DrinksPage {
+export class DrinksCategoriesPage {
 
-  categoryKey;
-  drinks = [];
+  drinksPage = DrinksPage;
+  categories = [];
   drinksReference;
   loading;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private afDb: AngularFireDatabase, public loadingCtrl: LoadingController) {
-    this.categoryKey = this.navParams.get('key');
-    console.log(this.categoryKey);
-
-    this.drinksReference = afDb.database.ref('/drinks/alcohol/' + this.categoryKey);
+    this.drinksReference = afDb.database.ref('/drinks/alcohol');
 
     this.showLoading();
     this.drinksReference.on('value', drinksList => {
-      let drinksValues = [];
+      let categories = [];
       drinksList.forEach(drinks => {
         drinks.val().key = drinks.key;
 
-        drinksValues.push({
-          $key: drinks.key,
-          name: drinks.val().name,
-          picture: drinks.val().picture,
-          price: drinks.val().price,
-          description: drinks.val().description
+        categories.push({
+          $key: drinks.key
         });
 
         return false;
       });
 
-      this.drinks = drinksValues;
+      this.categories = categories;
       this.loading.dismiss();
     });
   }
@@ -59,7 +53,7 @@ export class DrinksPage {
 
   cardClicked(key: string) {
     console.log(key);
-    // this.navCtrl.push(this.establishmentPP, { key });
+    this.navCtrl.push(this.drinksPage, { key });
   }
 
 }

@@ -16,6 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class DrinkPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // this.afDb.object(`drinks/alcohol/${this.categoryKey}`)
+    //   .valueChanges().subscribe(establishment => {
+    //     this.drink = establishment;
+    //     console.log(this.drink.name);
+    //   }
+    // );
   }
 
   ionViewDidLoad() {

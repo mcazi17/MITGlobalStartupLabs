@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DataProvider } from '../../providers/data/data';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+
+//Firebase
 import { Observable } from "rxjs/Observable";
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+
+//Provider
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -14,11 +18,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class ProfilePage {
 
+  loginPage = LoginPage;
   profile;
 
-  constructor(public navCtrl: NavController, public iab: InAppBrowser,
-    public navParams: NavParams, private dataProvider: DataProvider,
-    private afDb: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    private authProvider: AuthenticationProvider, private afDb: AngularFireDatabase, 
+    private afAuth: AngularFireAuth, private app: App) {
 
   }
 
@@ -26,13 +31,15 @@ export class ProfilePage {
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDb.object(`profile/${auth.uid}`).valueChanges().subscribe(profile => {
         this.profile = profile;
+        // this.profile.picture = this.viewFile(this.profile.picture);
       });
       console.log(this.profile);
     });
   }
 
-  viewFile(url) {
-    this.iab.create(url);
+  logout(){
+    this.authProvider.signOut();
+    this.app.getRootNav().setRoot(LoginPage);
   }
 
 }

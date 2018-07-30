@@ -20,6 +20,7 @@ import {
   RegisterPage,
   TabsPage,
   ProfilePage,
+  DrinksCategoriesPage
 } from '../pages/index.pages';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -48,6 +49,7 @@ import { DataProvider } from '../providers/data/data';
     PaymentPage,
     TabsPage,
     ProfilePage,
+    DrinksCategoriesPage
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ import { DataProvider } from '../providers/data/data';
     PaymentPage,
     TabsPage,
     ProfilePage,
+    DrinksCategoriesPage,
   ],
   providers: [
     StatusBar,

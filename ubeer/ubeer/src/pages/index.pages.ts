@@ -10,3 +10,4 @@ export { PaymentPage } from './payment/payment';
 export { RegisterPage } from './register/register';
 export { TabsPage } from './tabs/tabs';
 export { ProfilePage } from './profile/profile';
+export { DrinksCategoriesPage } from './drinks-categories/drinks-categories'

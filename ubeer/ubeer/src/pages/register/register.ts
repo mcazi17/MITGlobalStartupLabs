@@ -32,6 +32,7 @@ export class RegisterPage {
     this.profile.state = '';
     this.profile.zipcode = '';
     this.profile.phone = '';
+    this.profile.picture = '';
     this.user.email = '';
     this.user.password = '';
   }
