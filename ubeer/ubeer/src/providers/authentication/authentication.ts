@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { UserModel } from './../../models/user.interface';
+import { ProfileModel } from './../../models/profile.interface';
 
 //angular fire imports
-// import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 //firebase authentication
@@ -14,18 +15,31 @@ import { NavController, ToastController, LoadingController } from 'ionic-angular
 
 @Injectable()
 export class AuthenticationProvider {
-  
+
   // user: User;
 
-  constructor(private afAuth: AngularFireAuth, private toastCtrl: ToastController) {
+  constructor(private afAuth: AngularFireAuth, private afDb: AngularFireDatabase,
+    private toastCtrl: ToastController) {
     // afAuth.authState.subscribe((user: User) => {
     //   this.user = user;
     // });
   }
 
-  createUserWithEmailAndPassword(userModel: UserModel): Promise<any> {
-    return this.afAuth.auth.createUserWithEmailAndPassword(userModel.email, userModel.password);
+  createUserWithEmailAndPassword(user: UserModel): Promise<any> {
+    return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
   }
+
+  createProfile(profile: ProfileModel) {
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`profile/${auth.uid}`).set(profile).then(() => {
+      }).catch(error => {
+        this.showToast("Algo salió mal, intentalo de nuevo.");
+        console.log(error);
+      })
+    });
+  }
+
+  
 
   signInWithEmailAndPassword(userModel: UserModel): Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword(userModel.email, userModel.password);
@@ -39,7 +53,7 @@ export class AuthenticationProvider {
     }).present();
   }
 
-  authRegisterErrorsSpanish(error){
+  authRegisterErrorsSpanish(error) {
     if (error.message.includes("The email address is badly formatted")) {
       this.showToast("El email tiene un formato erroneo.");
     } else if (error.message.includes("The email address is already in use by another account.")) {
@@ -53,7 +67,7 @@ export class AuthenticationProvider {
     }
   }
 
-  authLoginErrorsSpanish(error){
+  authLoginErrorsSpanish(error) {
     if (error.message.includes("There is no user record corresponding to this identifier")) {
       this.showToast('Usuario inexistente.');
     } else if (error.message.includes("The password is invalid")) {

@@ -1,28 +1,30 @@
 <ion-content padding>
   <ion-list padding-right>
-    <!-- <img padding-left src="assets/img/logo.png"> -->
+    <img padding src="assets/imgs/logo.png">
+    
     <ion-item>
-      <ion-label color="primary" floating>Correo electronico</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+      <ion-label color="primary">Correo electrónico</ion-label>
+      <ion-input clearInput="true" type="email" [(ngModel)]="user.email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" floating>Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+      <ion-label color="primary">Contraseña</ion-label>
+      <ion-input clearInput="true" type="password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
 
     <p></p>
     <div padding>
-        <button [disabled]="!user.email.includes('@') || !user.email.includes('.') 
+      <button [disabled]="!user.email.includes('@') || !user.email.includes('.') 
         ||user.email.length<5 || user.password.length<6" ion-button color="primary" block (click)="login()">Iniciar Sesión</button>
     </div>
 
   </ion-list>
-  
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <p text-center>¿No estás registrado? <a [navPush]="registerPage">Regístrate. </a></p>
+    <p text-center>¿No estás registrado?
+      <a [navPush]="registerPage">Regístrate. </a>
+    </p>
   </ion-toolbar>
 </ion-footer>

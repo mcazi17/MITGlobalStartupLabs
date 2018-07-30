@@ -6,7 +6,8 @@ import { IonicPage, NavController, NavParams, MenuController, ToastController, L
 import { AuthenticationProvider } from './../../providers/authentication/authentication';
 
 //Models
-import { UserModel } from './../../models/user.interface';
+import { UserModel, ProfileModel } from './../../models/index.models';
+
 
 @IonicPage()
 @Component({
@@ -16,21 +17,22 @@ import { UserModel } from './../../models/user.interface';
 export class RegisterPage {
 
   user = {} as UserModel;
+  profile = {} as ProfileModel;
   repeatedPassword: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private menuCtrl: MenuController, private toastCtrl: ToastController, 
     private loadingCtrl: LoadingController, private authProvider: AuthenticationProvider) {
     menuCtrl.enable(false);
-    this.user.firstName = '';
-    this.user.lastName = '';
-    this.user.street = '';
-    this.user.houseNo = '';
-    this.user.city = '';
-    this.user.state = '';
-    this.user.zipcode = '';
-    this.user.phone = '';
-    this .user.email = '';
+    this.profile.firstName = '';
+    this.profile.lastName = '';
+    this.profile.street = '';
+    this.profile.houseNo = '';
+    this.profile.city = '';
+    this.profile.state = '';
+    this.profile.zipcode = '';
+    this.profile.phone = '';
+    this.user.email = '';
     this.user.password = '';
   }
 
@@ -49,10 +51,11 @@ export class RegisterPage {
       loading.present();
 
       this.authProvider.createUserWithEmailAndPassword(this.user).then(result => {
+        this.profile.email = this.user.email;
+        this.authProvider.createProfile(this.profile);
         loading.dismiss();
         this.authProvider.showToast("Registrado con éxito.")
         this.navCtrl.pop();
-
       }).catch(error => {
         loading.dismiss();
         this.authProvider.authRegisterErrorsSpanish(error);

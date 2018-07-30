@@ -3,16 +3,20 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { LoginPage } from '../pages/login/login';
-import { LocationPage } from '../pages/location/location';
-import { DrinksPage } from '../pages/drinks/drinks';
-import { OthersPage } from '../pages/others/others';
-import { DrinkPage } from '../pages/drink/drink';
-import { CartPage } from '../pages/cart/cart';
-import { PaymentPage } from '../pages/payment/payment';
-import { RegisterPage } from '../pages/register/register';
+import {
+  HomePage, 
+  ListPage, 
+  LoginPage, 
+  LocationPage, 
+  DrinksPage, 
+  OthersPage, 
+  DrinkPage, 
+  CartPage, 
+  PaymentPage, 
+  RegisterPage,
+  TabsPage,
+  ProfilePage,
+} from '../pages/index.pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +24,7 @@ import { RegisterPage } from '../pages/register/register';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = TabsPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -31,7 +35,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Login', component: LoginPage },
-      { title: 'Register', component: RegisterPage },
+      // { title: 'Register', component: RegisterPage },
       { title: 'Location', component: LocationPage },
       { title: 'Drink', component: DrinkPage },
       { title: 'Drinks', component: DrinksPage },

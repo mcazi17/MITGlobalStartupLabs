@@ -7,7 +7,7 @@ import { AuthenticationProvider } from './../../providers/authentication/authent
 //Models
 import { UserModel } from './../../models/user.interface';
 
-import { RegisterPage, HomePage } from '../index.pages';
+import { RegisterPage, HomePage, TabsPage } from '../index.pages';
 
 @IonicPage()
 @Component({
@@ -19,6 +19,7 @@ export class LoginPage {
   user = {} as UserModel;
   registerPage = RegisterPage;
   homePage = HomePage;
+  tabsPage = TabsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private menuCtrl: MenuController, private loadingCtrl: LoadingController, 
@@ -41,7 +42,7 @@ export class LoginPage {
     this.authProvider.signInWithEmailAndPassword(this.user).then(result => {
       loading.dismiss();
       this.menuCtrl.enable(true);
-      this.navCtrl.setRoot(this.homePage);
+      this.navCtrl.setRoot(this.tabsPage);
       
     }).catch(error => {
       loading.dismiss();

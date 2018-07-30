@@ -1,0 +1,54 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="cards-bg">
+  <ion-list>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/logo.png">
+        <!-- <img [src]="files.fullPath"> -->
+      </ion-avatar>
+      <h2>{{profile?.firstName}} {{profile?.lastName}}</h2>
+    </ion-item>
+
+    <ion-item>
+      Titulo
+      <ion-note item-end>
+        Nota
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-list padding-right>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Nombre
+      </ion-label>
+      <ion-input [(ngModel)]="user.firstName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Apellido
+      </ion-label>
+      <ion-input [(ngModel)]="user.lastName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Correo electrónico
+      </ion-label>
+      <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+    </ion-item>
+  </ion-list> -->
+
+</ion-content>

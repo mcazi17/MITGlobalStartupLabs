@@ -2,5 +2,7 @@
   "name": "ubeer",
   "app_id": "8856eba6",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }

@@ -8,3 +8,5 @@ export { DrinkPage } from './drink/drink';
 export { CartPage } from './cart/cart';
 export { PaymentPage } from './payment/payment';
 export { RegisterPage } from './register/register';
+export { TabsPage } from './tabs/tabs';
+export { ProfilePage } from './profile/profile';
