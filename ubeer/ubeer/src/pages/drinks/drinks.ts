@@ -23,12 +23,13 @@ export class DrinksPage {
   drinkPage = DrinkPage;
   drinksReference;
   loading;
-  cartNo: number = this.dataProvider.getCartNo();
-  isCartEmpty: boolean = this.dataProvider.getIsCartEmpty();
+  cartNo: number;
+  isCartEmpty: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private afDb: AngularFireDatabase, public loadingCtrl: LoadingController,
     private dataProvider: DataProvider) {
+
     this.categoryKey = this.navParams.get('key');
     console.log(this.categoryKey);
 
@@ -57,8 +58,8 @@ export class DrinksPage {
   }
 
   ionViewDidLoad() {
-    // this.drinks = this.afDb.list('drinks/alcohol').valueChanges();
-    // console.log(this.drinks);
+    this.cartNo = this.dataProvider.getCartNo();
+    this.isCartEmpty = this.dataProvider.getIsCartEmpty();
   }
 
   showLoading() {
@@ -75,6 +76,11 @@ export class DrinksPage {
   addToCart(key: string) {
     this.dataProvider.setIsCartEmpty(false);
     this.dataProvider.addToCart(1);
+
+    this.cartNo = this.dataProvider.getCartNo();
+    console.log(this.cartNo);
+    this.isCartEmpty = this.dataProvider.getIsCartEmpty();
+    console.log(this.isCartEmpty);
   }
 
 }
